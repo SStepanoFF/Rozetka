@@ -1,3 +1,4 @@
+import framework.PropertyLoader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterTest;
@@ -13,7 +14,7 @@ public class Tests {
     @BeforeTest
     public void setUp() {
         WebDriver driver = new FirefoxDriver();
-        driver.get(Property.loadProperty("url"));
+        driver.get(PropertyLoader.loadProperty("url"));
     }
 
     @AfterTest
