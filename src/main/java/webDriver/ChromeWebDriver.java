@@ -8,6 +8,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
  */
 public class ChromeWebDriver {
     public static WebDriver getInstance(){
+        String chromeFile="..\\src\\main\\resources\\webDriver\\Chrome\\chromedriver.exe";
+        System.setProperty("webdriver.chrome.driver",chromeFile);
         return new ChromeDriver();
     }
 }

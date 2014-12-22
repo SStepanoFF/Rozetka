@@ -7,7 +7,7 @@ import java.io.IOException;
  * Created by sstep on 12/22/2014.
  */
 public class PropertyLoader {
-    private static final String propFile = "Rozetka.properties";
+    private static final String propFile = "../Rozetka.properties";
 
     public static String loadProperty(String name) {
         Properties proper = new Properties();
