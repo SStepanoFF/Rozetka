@@ -4,6 +4,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.MainPage;
+import pages.MobilPhonePage;
 import webDriver.Driver;
 
 import java.util.concurrent.TimeUnit;
@@ -12,6 +13,7 @@ import java.util.concurrent.TimeUnit;
 public class Tests {
     private WebDriver driver;
     private MainPage mainPage;
+    private MobilPhonePage mobilPhonePage;
 
     @BeforeTest
     public void setUp() {
@@ -19,6 +21,7 @@ public class Tests {
         driver.get(PropertyLoader.loadProperty("url"));
         driver.manage().timeouts().implicitlyWait(Integer.parseInt(PropertyLoader.loadProperty("timeout")), TimeUnit.SECONDS);
         mainPage=new MainPage(driver);
+        mobilPhonePage=new MobilPhonePage(driver);
     }
 
     @AfterTest
@@ -29,5 +32,7 @@ public class Tests {
     @Test()
     public void openTelMP3TabTest() {
         mainPage.openTab(mainPage.tel_mp3_tab);
+        mainPage.openTab(mainPage.telephones);
+       // Assert.assertTrue(mainPage.isElementPresent(mobilPhonePage.phoneTitle));
     }
 }
