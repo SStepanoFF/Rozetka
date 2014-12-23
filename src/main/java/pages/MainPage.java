@@ -1,6 +1,5 @@
 package pages;
 
-import com.oracle.webservices.internal.api.message.PropertySet;
 import framework.PropertyLoader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,7 +16,7 @@ public class MainPage {
 
     public MainPage(WebDriver driver){
         this.driver=driver;
-        PageFactory.initElements(driver,this);
+       PageFactory.initElements(driver, this);
         WebDriverWait wait=new WebDriverWait(driver, Integer.parseInt(PropertyLoader.loadProperty("timeout")));
         wait.until(ExpectedConditions.visibilityOf(mainMenu));
     }
@@ -25,7 +24,7 @@ public class MainPage {
     @FindBy(className="m-main-t")
     public WebElement mainMenu;
 
-    @FindBy(css="m-main-title-text")
+    @FindBy(id="phones-mp3-gps")
     public WebElement tel_mp3_tab;
 
     public void openTab(WebElement tab){
