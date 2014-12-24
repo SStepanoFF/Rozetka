@@ -9,7 +9,7 @@ public class MobilPhonePage extends MainPage {
     public MobilPhonePage(WebDriver driver) {
         super(driver);
     }
-    @FindBy(className = "title-page-with-filters")
+    @FindBy(tagName = "h1")
     public WebElement phoneTitle;
 
     @FindBy(linkText = "Все мобильные телефоны")

@@ -1,5 +1,6 @@
 import framework.PropertyLoader;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -31,8 +32,8 @@ public class Tests {
 
     @Test()
     public void openTelMP3TabTest() {
-        mainPage.openTab(mainPage.tel_mp3_tab);
-        mainPage.openTab(mainPage.telephones);
-       // Assert.assertTrue(mainPage.isElementPresent(mobilPhonePage.phoneTitle));
+        mainPage.mouseoverTab(mainPage.tel_mp3_tab);
+        mainPage.clickOn(mainPage.telephones);
+        Assert.assertTrue(mainPage.isElementPresent(mobilPhonePage.phoneTitle));
     }
 }
