@@ -27,13 +27,12 @@ public class Tests {
 
     @AfterTest
     public void tearDown() {
-        driver.close();
+     //   driver.close();
     }
 
     @Test()
-    public void openTelMP3TabTest() {
-        mainPage.mouseoverTab(mainPage.tel_mp3_tab);
-        mainPage.clickOn(mainPage.telephones);
-        Assert.assertTrue(mainPage.isElementPresent(mobilPhonePage.phoneTitle));
+    public void openTelTest() {
+        mainPage.selectTeleph();
+        Assert.assertTrue(driver.getTitle().contains("Мобильные телефоны"));
     }
 }

@@ -25,13 +25,18 @@ public class MainPage {
     }
 
     @FindBy(className="m-main-t")
-    public WebElement mainMenu;
+    private WebElement mainMenu;
 
     @FindBy(id="phones-mp3-gps")
-    public WebElement tel_mp3_tab;
+    private WebElement tel_mp3_tab;
 
-    @FindBy(linkText = "Мобильные телефоны")
-    public WebElement telephones;
+    @FindBy(xpath= "//a.m-main-fat-link3[contains(text(),'Мобильные телефоны')]")
+    private WebElement telephones;
+
+    public void selectTeleph(){
+        mouseoverTab(tel_mp3_tab);
+        clickOn(telephones);
+    }
 
     public void clickOn(WebElement tab){
         tab.click();

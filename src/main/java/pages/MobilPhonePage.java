@@ -4,13 +4,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class MobilPhonePage extends MainPage {
 
     public MobilPhonePage(WebDriver driver) {
         super(driver);
     }
-    @FindBy(tagName = "h1")
-    public WebElement phoneTitle;
+
+    @FindBy(id = "sort_producer")
+    public List<WebElement> phoneFirm;
 
     @FindBy(linkText = "Все мобильные телефоны")
     public WebElement allPhones;
@@ -26,5 +29,8 @@ public class MobilPhonePage extends MainPage {
 
     @FindBy (linkText = "Nokia")
     public WebElement nokia;
+
+    @FindBy(tagName = "a[class='xhr lightblue sprite dropdown']")
+    public WebElement sortRating;
 
 }
