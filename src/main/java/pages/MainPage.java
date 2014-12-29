@@ -1,5 +1,6 @@
 package pages;
 
+import framework.Operations;
 import framework.PropertyLoader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,13 +13,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 /**
  * Created by Sergey on 22.12.2014.
  */
-public class MainPage {
-    protected WebDriver driver;
-    protected Actions action;
+public class MainPage extends Operations{
+
+    public MobilPhonePage mobilPhonePage;
 
     public MainPage(WebDriver driver){
-        this.driver=driver;
-        this.action = new Actions(driver);
+        super(driver);
         PageFactory.initElements(driver, this);
         WebDriverWait wait=new WebDriverWait(driver, Integer.parseInt(PropertyLoader.loadProperty("timeout")));
         wait.until(ExpectedConditions.visibilityOf(tel_mp3_tab));
@@ -30,20 +30,13 @@ public class MainPage {
     @FindBy(id="phones-mp3-gps")
     private WebElement tel_mp3_tab;
 
-    @FindBy(xpath= "//a.m-main-fat-link3[contains(text(),'Мобильные телефоны')]")
+    @FindBy(linkText= "Мобильные телефоны")
     private WebElement telephones;
 
-    public void selectTeleph(){
+    public MobilPhonePage openMobilPhonePage(){
         mouseoverTab(tel_mp3_tab);
         clickOn(telephones);
-    }
-
-    public void clickOn(WebElement tab){
-        tab.click();
-    }
-
-    public void mouseoverTab(WebElement tab){
-        action.moveToElement(tab).build().perform();
+        return new MobilPhonePage(driver);
     }
 
     public boolean isElementPresent(WebElement element){

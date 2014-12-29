@@ -14,7 +14,6 @@ import java.util.concurrent.TimeUnit;
 public class Tests {
     private WebDriver driver;
     private MainPage mainPage;
-    private MobilPhonePage mobilPhonePage;
 
     @BeforeTest
     public void setUp() {
@@ -22,17 +21,21 @@ public class Tests {
         driver.get(PropertyLoader.loadProperty("url"));
         driver.manage().timeouts().implicitlyWait(Integer.parseInt(PropertyLoader.loadProperty("timeout")), TimeUnit.SECONDS);
         mainPage=new MainPage(driver);
-        mobilPhonePage=new MobilPhonePage(driver);
     }
 
     @AfterTest
     public void tearDown() {
-     //   driver.close();
+        driver.quit();
     }
 
     @Test()
     public void openTelTest() {
-        mainPage.selectTeleph();
+        //mainPage.selectTeleph();
+        mainPage.mobilPhonePage=mainPage.openMobilPhonePage();
         Assert.assertTrue(driver.getTitle().contains("Мобильные телефоны"));
+    }
+
+    @Test void selectTopRaitingTest(){
+        System.out.println(mainPage.mobilPhonePage.selectTopAllPhoneRaiting());
     }
 }
