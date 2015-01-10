@@ -1,4 +1,4 @@
-import framework.PropertyLoader;
+import framework.Loader;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -8,6 +8,7 @@ import pages.MainPage;
 import pages.MobilPhonePage;
 import webDriver.Driver;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 
@@ -18,8 +19,8 @@ public class Tests {
     @BeforeTest
     public void setUp() {
         driver = Driver.getInstance();
-        driver.get(PropertyLoader.loadProperty("url"));
-        driver.manage().timeouts().implicitlyWait(Integer.parseInt(PropertyLoader.loadProperty("timeout")), TimeUnit.SECONDS);
+        driver.get(Loader.loadProperty("url"));
+        driver.manage().timeouts().implicitlyWait(Integer.parseInt(Loader.loadProperty("timeout")), TimeUnit.SECONDS);
         mainPage=new MainPage(driver);
     }
 
@@ -28,14 +29,20 @@ public class Tests {
         driver.quit();
     }
 
-    @Test()
+    @Test
     public void openTelTest() {
-        //mainPage.selectTeleph();
         mainPage.mobilPhonePage=mainPage.openMobilPhonePage();
-        Assert.assertTrue(driver.getTitle().contains("Мобильные телефоны"));
+        Assert.assertTrue(driver.getTitle().contains("мобильные телефоны"));
     }
 
-    @Test void selectTopRaitingTest(){
-        System.out.println(mainPage.mobilPhonePage.selectTopAllPhoneRaiting());
+    @Test
+    private void selectTopRaitingTest() throws IOException {
+        mainPage.mobilPhonePage.selectTopAllPhoneRaiting();
     }
+
+    @Test
+    private void selectZExpensivePhone(){
+        mainPage.mobilPhonePage.selectTopAllPhoneExpensive();
+    }
+
 }

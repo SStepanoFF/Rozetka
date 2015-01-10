@@ -1,7 +1,7 @@
 package pages;
 
 import framework.Operations;
-import framework.PropertyLoader;
+import framework.Loader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -20,7 +20,7 @@ public class MainPage extends Operations{
     public MainPage(WebDriver driver){
         super(driver);
         PageFactory.initElements(driver, this);
-        WebDriverWait wait=new WebDriverWait(driver, Integer.parseInt(PropertyLoader.loadProperty("timeout")));
+        WebDriverWait wait=new WebDriverWait(driver, Integer.parseInt(Loader.loadProperty("timeout")));
         wait.until(ExpectedConditions.visibilityOf(tel_mp3_tab));
     }
 
@@ -33,9 +33,13 @@ public class MainPage extends Operations{
     @FindBy(linkText= "Мобильные телефоны")
     private WebElement telephones;
 
+    @FindBy(linkText = "Все мобильные телефоны")
+    public WebElement allPhones;
+
     public MobilPhonePage openMobilPhonePage(){
         mouseoverTab(tel_mp3_tab);
         clickOn(telephones);
+        clickOn(allPhones);
         return new MobilPhonePage(driver);
     }
 

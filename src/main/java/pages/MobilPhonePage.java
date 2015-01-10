@@ -1,6 +1,6 @@
 package pages;
 
-import framework.PropertyLoader;
+import framework.Loader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,15 +14,12 @@ public class MobilPhonePage extends MainPage {
 
     public MobilPhonePage(WebDriver driver) {
         super(driver);
-        WebDriverWait wait=new WebDriverWait(driver,Integer.parseInt(PropertyLoader.loadProperty("timeout")));
-        wait.until(ExpectedConditions.visibilityOf(allPhones));
+        WebDriverWait wait=new WebDriverWait(driver,Integer.parseInt(Loader.loadProperty("timeout")));
+        wait.until(ExpectedConditions.visibilityOf(sortRating));
     }
 
     @FindBy(id = "sort_producer")
     public List<WebElement> phoneFirm;
-
-    @FindBy(linkText = "Все мобильные телефоны")
-    public WebElement allPhones;
 
     @FindBy (linkText = "Apple")
     public WebElement apple;
@@ -39,13 +36,23 @@ public class MobilPhonePage extends MainPage {
     @FindBy(linkText = "по рейтингу")
     public WebElement sortRating;
 
-    @FindBy(css = "div[name='goods_list']")
+    @FindBy(linkText = "от дорогих к дешевым")
+    public WebElement sortExpensive;
+
+    @FindBy(css = ".gtile-i-title")
     private List<WebElement> resultList;
 
-    public String selectTopAllPhoneRaiting(){
-        clickOn(allPhones);
-        //clickOn(sortRating);
-        return resultList.get(1).toString();
+    @FindBy(css=".g-price-uah")
+    private List<WebElement> priceList;
+
+    public void selectTopAllPhoneRaiting(){
+        clickOn(sortRating);
+        Loader.writeToFile("First in TopAll by RAITING: "+resultList.get(0).getText()+"  Price="+priceList.get(0).getText());
+    }
+
+    public void selectTopAllPhoneExpensive(){
+        clickOn(sortExpensive);
+        Loader.writeToFile("The most expensive phone is: "+resultList.get(0).getText()+"  Price="+priceList.get(0).getText());
     }
 
 }
