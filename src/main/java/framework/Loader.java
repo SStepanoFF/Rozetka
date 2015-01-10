@@ -37,22 +37,4 @@ public class Loader {
             proper.setProperty("res",text);
     }*/
 
-    public static void writeToFile(String text) {
-        FileWriter fileWriter=null;
-        try {
-            File resultFile = new File("resultFile.txt");
-            fileWriter = new FileWriter(resultFile,true);
-            fileWriter.append(text+"\n");
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (fileWriter != null) {
-                try {
-                    fileWriter.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
 }

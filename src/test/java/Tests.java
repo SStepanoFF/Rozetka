@@ -22,6 +22,7 @@ public class Tests {
         driver.get(Loader.loadProperty("url"));
         driver.manage().timeouts().implicitlyWait(Integer.parseInt(Loader.loadProperty("timeout")), TimeUnit.SECONDS);
         mainPage=new MainPage(driver);
+        mainPage.clearResultFile();
     }
 
     @AfterTest
@@ -30,18 +31,18 @@ public class Tests {
     }
 
     @Test
-    public void openTelTest() {
+    public void openPhonePage() {
         mainPage.mobilPhonePage=mainPage.openMobilPhonePage();
         Assert.assertTrue(driver.getTitle().contains("мобильные телефоны"));
     }
 
     @Test
-    private void selectTopRaitingTest() throws IOException {
+    private void selectTopRaitingTest(){
         mainPage.mobilPhonePage.selectTopAllPhoneRaiting();
     }
 
     @Test
-    private void selectZExpensivePhone(){
+    private void selectExpensivePhone(){
         mainPage.mobilPhonePage.selectTopAllPhoneExpensive();
     }
 

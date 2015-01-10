@@ -47,12 +47,12 @@ public class MobilPhonePage extends MainPage {
 
     public void selectTopAllPhoneRaiting(){
         clickOn(sortRating);
-        Loader.writeToFile("First in TopAll by RAITING: "+resultList.get(0).getText()+"  Price="+priceList.get(0).getText());
+        writeToFile("First in TopAll by RAITING: "+resultList.get(0).getText()+"  Price="+priceList.get(0).getText());
     }
 
     public void selectTopAllPhoneExpensive(){
         clickOn(sortExpensive);
-        Loader.writeToFile("The most expensive phone is: "+resultList.get(0).getText()+"  Price="+priceList.get(0).getText());
+        writeToFile("The most expensive phone is: "+resultList.get(0).getText()+"  Price="+priceList.get(0).getText());
     }
 
 }
