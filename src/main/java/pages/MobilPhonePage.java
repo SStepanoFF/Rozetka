@@ -1,12 +1,14 @@
 package pages;
 
 import framework.Loader;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.util.List;
 
@@ -18,26 +20,42 @@ public class MobilPhonePage extends MainPage {
         wait.until(ExpectedConditions.visibilityOf(sortRating));
     }
 
-    @FindBy(id = "sort_producer")
-    public List<WebElement> phoneFirm;
+    //region Phone producer
+    @FindBy(css = "#sort_producer .filter-parametrs-i-l-i-text")
+    private List<WebElement> phoneFirm;
 
     @FindBy (linkText = "Apple")
-    public WebElement apple;
+    private WebElement apple;
 
     @FindBy (linkText = "Acer")
-    public WebElement acer;
+    private WebElement acer;
 
     @FindBy (linkText = "HTC")
-    public WebElement htc;
+    private WebElement htc;
 
     @FindBy (linkText = "Nokia")
-    public WebElement nokia;
+    private WebElement nokia;
+
+    @FindBy (css = "a[class='lightblue underline filter-active-reset-link']")
+    private WebElement resetFilter;
+    //endregion
+
+    //region Sorting Type
+    @FindBy(css = ".m-sort-i")
+    private List<WebElement> sortList;
 
     @FindBy(linkText = "по рейтингу")
-    public WebElement sortRating;
+    private WebElement sortRating;
 
     @FindBy(linkText = "от дорогих к дешевым")
-    public WebElement sortExpensive;
+    private WebElement sortExpensive;
+
+    @FindBy(linkText = "от дешевых к дорогим")
+    private WebElement sortChiper;
+
+    @FindBy(css = ".xhr.lightblue.sprite.dropdown>i")
+    private WebElement dropDownSort;
+    //endregion
 
     @FindBy(css = ".gtile-i-title")
     private List<WebElement> resultList;
@@ -47,12 +65,32 @@ public class MobilPhonePage extends MainPage {
 
     public void selectTopAllPhoneRaiting(){
         clickOn(sortRating);
-        writeToFile("First in TopAll by RAITING: "+resultList.get(0).getText()+"  Price="+priceList.get(0).getText());
+        writeToFile("First phone by RAITING in TopAll: " + resultList.get(0).getText() + "  Price=" + priceList.get(0).getText());
     }
 
     public void selectTopAllPhoneExpensive(){
         clickOn(sortExpensive);
-        writeToFile("The most expensive phone is: "+resultList.get(0).getText()+"  Price="+priceList.get(0).getText());
+        writeToFile("The most expensive phone is: " + resultList.get(0).getText() + "  Price=" + priceList.get(0).getText());
+    }
+
+    public void allSorting(){
+        for (int i=0; i<sortList.size();i++){
+            clickOn(dropDownSort);
+            clickOn(sortList.get(i));
+            driver.navigate().refresh();
+            Assert.assertTrue(driver.findElement(By.cssSelector(".xhr.lightblue.sprite.dropdown")).getText().contains(sortList.get(i).getText()));
+            writeToFile(sortList.get(i).getText() + ": " + resultList.get(0).getText() + "  Price=" + priceList.get(0).getText());
+        }
+    }
+
+    public void allPhoneProduser(){
+        for (int i=0; i<5; i++){
+            if (isElementPresent(resetFilter)){
+                resetFilter.click();
+            }
+            phoneFirm.get(i).click();
+            writeToFile(phoneFirm.get(i).getText() + " raiting: " + resultList.get(0).getText() + "  Price=" + priceList.get(0).getText());
+        }
     }
 
 }

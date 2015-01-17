@@ -42,9 +42,4 @@ public class MainPage extends Operations{
         clickOn(allPhones);
         return new MobilPhonePage(driver);
     }
-
-    public boolean isElementPresent(WebElement element){
-        if (element.isDisplayed()) return true;
-        else return false;
-    }
 }

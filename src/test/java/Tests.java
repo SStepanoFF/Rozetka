@@ -38,12 +38,26 @@ public class Tests {
 
     @Test
     private void selectTopRaitingTest(){
+        mainPage.writeToFile("selectTopRaitingTest\n");
         mainPage.mobilPhonePage.selectTopAllPhoneRaiting();
     }
 
     @Test
-    private void selectExpensivePhone(){
+    private void selectExpensivePhoneTest(){
+        mainPage.writeToFile("\nselectExpensivePhoneTest\n");
         mainPage.mobilPhonePage.selectTopAllPhoneExpensive();
+    }
+
+    @Test
+    private void sortAllTest(){
+        mainPage.writeToFile("\nsortAllTest\n");
+        mainPage.mobilPhonePage.allSorting();
+    }
+
+    @Test
+    private void popularByFirmTest(){
+        mainPage.writeToFile("\npopularByFirmTest\n");
+        mainPage.mobilPhonePage.allPhoneProduser();
     }
 
 }
