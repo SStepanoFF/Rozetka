@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Custom suite" verbose="10" data-provider-thread-count="1">
+  <test name="Rozetka" preserve-order="true">
+    <classes>
+      <class name="Tests">
+        <methods>
+          <include name="openPhonePage"/>
+          <include name="selectTopRaitingTest"/>
+          <include name="selectExpensivePhoneTest"/>
+      <!--    <include name="sortAllTest"/>-->
+          <include name="popularByFirmTest"/>
+        </methods>
+      </class>
+    </classes>
+  </test>
+</suite>
+
+
