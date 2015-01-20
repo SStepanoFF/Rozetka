@@ -64,11 +64,13 @@ public class MobilPhonePage extends MainPage {
     private List<WebElement> priceList;
 
     public void selectTopAllPhoneRaiting(){
+        clickOn(dropDownSort);
         clickOn(sortRating);
         writeToFile("First phone by RAITING in TopAll: " + resultList.get(0).getText() + "  Price=" + priceList.get(0).getText());
     }
 
     public void selectTopAllPhoneExpensive(){
+        clickOn(dropDownSort);
         clickOn(sortExpensive);
         writeToFile("The most expensive phone is: " + resultList.get(0).getText() + "  Price=" + priceList.get(0).getText());
     }
